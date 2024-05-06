@@ -31,7 +31,7 @@ HTML_TEMPLATE = """
             padding: 10px;
             border-radius: 4px;
             border: 1px solid #ccc;
-            box-sizing: border-box; /* So that width includes padding */
+            box-sizing: border-box; 
         }
         button {
             padding: 10px 20px;
