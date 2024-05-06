@@ -97,7 +97,7 @@ def parse_to_json(input_string):
             else:
                 buffer.append(part)
 
-        # 添加最後一個鍵值對
+        
         if current_key and buffer:
             args_dict[current_key] = ''.join(buffer).strip()
 
