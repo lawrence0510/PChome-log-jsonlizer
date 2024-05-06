@@ -9,11 +9,58 @@ HTML_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <title>JSON Visualizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #5a5a5a;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; 
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        .error-message {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <h1>Simple JSON Output</h1>
     <form action="/" method="post">
-        <textarea name="input_string" rows="10" cols="50">{{ current_input }}</textarea><br>
+        <textarea name="input_string" rows="10" cols="50" placeholder="Enter your string here...">{{ current_input }}</textarea><br>
         <button type="submit">Convert to JSON</button>
     </form>
     {% if json_data %}
@@ -21,10 +68,11 @@ HTML_TEMPLATE = """
     <pre>{{ json_data }}</pre>
     {% elif error_message %}
     <h2>Error:</h2>
-    <p>{{ error_message }}</p>
+    <p class="error-message">{{ error_message }}</p>
     {% endif %}
 </body>
 </html>
+
 """
 
 def parse_to_json(input_string):
@@ -49,7 +97,7 @@ def parse_to_json(input_string):
             else:
                 buffer.append(part)
 
-        # 添加最後一個鍵值對
+        
         if current_key and buffer:
             args_dict[current_key] = ''.join(buffer).strip()
 
