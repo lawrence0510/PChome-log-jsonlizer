@@ -76,4 +76,4 @@ def home():
     return render_template_string(HTML_TEMPLATE, json_data=json_data, error_message=error_message, current_input=current_input)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5050)
+    app.run(host='0.0.0.0', port=5050, debug=True)
